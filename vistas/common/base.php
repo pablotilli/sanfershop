@@ -27,7 +27,7 @@
 						 
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="navbar-toggler-icon"></span>
-						</button> <a class="navbar-brand" href="#">SanFer SHOP</a>
+						</button> <a class="navbar-brand" href="index.php">SanFer SHOP</a>
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 							<ul class="navbar-nav ml-md-auto">
@@ -92,6 +92,19 @@
 					      <button name="submit" type="submit" class="btn btn-primary">Buscar</button>
 						</div>
 						
+						<?php 
+							if ( isset($_SESSION["usuario"]) ){ ?>
+								<div class="mt-4 mb-2">					    
+		   					    	<a href="#" class="mx-4" name="favoritos">Favoritos</a>
+
+									<a href="#" class="mx-4" name="favoritos">Historial</a>
+
+									<a href="index.php?m=pubs&a=new" class="mx-4" name="publicar">Publicar</a>
+
+									<a href="index.php?m=pubs&a=list" class="mx-4" name="publicar">Mis publicaciones</a>
+								</div>
+						<?php } ?>
+
 					  </div>
 
 					</form>
@@ -100,69 +113,41 @@
 			</div>
 		</header>
 
-		<?php if ( isset($mensaje_alerta) ){?>
 
-		  <div class="alert alert-danger alert-dismissible fade show text-center">
+		
+		<?php 
+
+			$tipo_alerta = "danger";
+
+			if ( isset($_GET["s"] ) ){
+				$mensaje_alerta = $_GET["s"];
+				$tipo_alerta = $_GET["t"]; //Tipo de alerta
+
+			}
+
+
+			if ( isset($mensaje_alerta) ){?>
+
+		  <div class="alert alert-<?=$tipo_alerta?> alert-dismissible fade show text-center">
 		    <button type="button" class="close" data-dismiss="alert">&times;</button>
 		    <?= $mensaje_alerta ?>
 		  </div>
 			
 		</div>
 
-		<?php } ?>
+		<?php 
 
-	<div class="row">
-		<div class="col-md-12">
-			<div class="carousel slide" id="carousel-732363">
-				<ol class="carousel-indicators">
-					<li data-slide-to="0" data-target="#carousel-732363">
-					</li>
-					<li data-slide-to="1" data-target="#carousel-732363" class="active">
-					</li>
-					<li data-slide-to="2" data-target="#carousel-732363">
-					</li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="carousel-item"> 
-						<img class="d-block w-100" height="300px" alt="Carousel Bootstrap First" src="<?= PATH_IMAGENES ?>/publicidades/pub2.jpg">
-						<div class="carousel-caption">
-							<h4>
-								First Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
-					</div>
-					<div class="carousel-item active">
-						<img class="d-block w-100" height="300px" alt="Carousel Bootstrap Second" src="<?= PATH_IMAGENES ?>/publicidades/pub1.jpg">
-						<div class="carousel-caption">
-							<h4>
-								Second Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img class="d-block w-100" height="300px" alt="Carousel Bootstrap Third" src="<?= PATH_IMAGENES ?>/publicidades/pub3.jpg">
-						<div class="carousel-caption">
-							<h4>
-								Third Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
-					</div>
-				</div> <a class="carousel-control-prev" href="#carousel-732363" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-732363" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
-			</div>
-		</div>
-	</div>
+			}
+
+		?>
+
+
+
 	<div class="row">
 
 		<div class="col-md-12">
+
+			<?php if(isset($contenido_seccion1)){include( $contenido_seccion1 );} ?>
 
 			<nav class="mt-4">
 				<ol class="breadcrumb">
@@ -178,7 +163,7 @@
 				</ol>
 			</nav>
 
-			<?php include( $contenido ); ?>
+			<?php if(isset($contenido_seccion2)){include( $contenido_seccion2 );} ?>
 
 	</div>
 

@@ -1,24 +1,27 @@
 <?php
 
-function crearHTMLCardPublicacion($titulo, $descripcion, $imagen){
+function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio){
 ?>	
-		<div class="col-md-3 my-4">
 
-			<a href=""><div class="card p-3">
-				
-				<img class="card-img-top mb-4" height="200" alt="" src="<?= FILES . '/imagenes/publicaciones/' . $imagen ?>">
+  <div class="col-md-3 mb-4 text-center d-flex align-items-stretch"">
 
-				<div class="card-block">
-					<h5 class="card-title">
-						<?= $titulo ?>
-					</h5>
-					<p class="card-text">
-						<?php echo '<pre>' . $descripcion . '</pre>' ?>
-					</p>
+	<div class="card">
+		<div class="card-title mb-5 p-4">
+		  <?= $titulo ?>
+	  	</div>
 
-					</div>
-				</div>
-			</a>
+	    <img class="card-img-top"  alt=""  src="<?= FILES . '/imagenes/publicaciones/' . $imagen ?>">
+	   
+	    <div class="card-img-top card-body">
+
 		</div>
+	      
+	      <div class="card-footer">
+	    	  <?= $precio ?>
+		  </div>
+
+	</div>
+  </div>
+
 
 <?php } ?>
