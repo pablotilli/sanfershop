@@ -5,4 +5,4 @@ Sitio de ejemplo - Curso de Desarrollo Web - San Fernando 2019
 
 http://localhost/sanfershop/admin/
 
-IMPORTANTE: En la tabla de Usuarios, crear un usuario cuyo nombre sea "root" (sin comillas)
+IMPORTANTE: La password de ADMIN es root

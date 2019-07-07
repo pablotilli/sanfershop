@@ -62,3 +62,26 @@ function getTablaHTML( $registros, $campos, $primary_key, $nombre_modulo ){
   return $tablaHTML;
 
 }
+
+function getOptionsComboCategorias($incluir_cat_todas = false){
+  
+    include_once(PATH_HELPERS . "/database_helper.php");
+    include_once PATH_DAOS . '/categoriasDAO.php';
+
+    $conexion = getConexion();
+
+    $categorias = buscarCategorias();
+
+    $opcionesCombo = "";
+
+    if ($incluir_cat_todas){
+        $opcionesCombo .= '<option value="-1">Todas</option>';
+    }
+    
+    foreach ( $categorias as $categoria ){
+        $opcionesCombo .= '<option value="'. $categoria["cat_id"] . '">' . $categoria["cat_descripcion"] . '</option>';
+    }
+
+    return $opcionesCombo;    
+
+}

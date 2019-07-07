@@ -75,12 +75,11 @@
 
 						<div class="cols-xs-12 col-md-3 my-2">
 					      <select id="categoria" name="categoria" class="custom-select">
-					      	<option value="-1">Todas</option>
-					        <option value="0">Computación</option>
-					        <option value="1">Electrodomesticos</option>
-					        <option value="2">Muebles</option>
-					        <option value="3">Vehiculos</option>
-					        <option value="4">Indumentaria</option>
+							<?php
+								include_once( PATH_HELPERS . "/html_helper.php");
+
+								echo getOptionsComboCategorias(true);
+							?>
 					      </select>
 						</div>
 

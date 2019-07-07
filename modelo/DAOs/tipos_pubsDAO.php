@@ -7,7 +7,9 @@
         $conexion = getConexion();
 
         $consulta = "SELECT * " . 
-                    "FROM tipos_publicacion";
+                    "FROM tipos_publicacion " .
+                    "ORDER BY tp_descripcion";
+                    ;
 
         $resultado = $conexion->query( $consulta );
 

@@ -7,7 +7,8 @@
         $conexion = getConexion();
 
         $consulta = "SELECT * " . 
-                    "FROM categorias";
+                    "FROM categorias " .
+                    "ORDER BY cat_descripcion";
 
         $resultado = $conexion->query( $consulta );
 
