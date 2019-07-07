@@ -19,8 +19,13 @@
             <label for="categoria">Categoría</label> 
             <div>
               <select id="categoria" name="categoria" aria-describedby="categoriaHelpBlock" required="required" class="custom-select">
-                <option value="1">Electronica</option>
-                <option value="2">Indumentaria</option>
+
+                <?php
+                  include_once( PATH_HELPERS . "/html_helper.php");
+
+                  echo getOptionsComboCategorias(false);
+                ?>
+
               </select> 
               <span id="categoriaHelpBlock" class="form-text text-muted">¿A que categoría pertenece lo que estas publicando?</span>
             </div>
@@ -39,8 +44,13 @@
             <label for="tipo_publicacion">Tipo</label> 
             <div>
               <select id="tipo_publicacion" name="tipo_publicacion" aria-describedby="tipo_publicacionHelpBlock" required="required" class="custom-select">
-                <option value="1">Venta</option>
-                <option value="2">Intercambio</option>
+
+                <?php
+                  include_once( PATH_HELPERS . "/html_helper.php");
+
+                  echo getOptionsComboTiposPublicacion(false);
+                ?>
+
               </select> 
               <span id="tipo_publicacionHelpBlock" class="form-text text-muted">Selecciona el tipo de publicación</span>
             </div>

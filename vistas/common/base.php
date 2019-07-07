@@ -27,7 +27,7 @@
 						 
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="navbar-toggler-icon"></span>
-						</button> <a class="navbar-brand" href="index.php">SanFer SHOP</a>
+						</button> <a class="navbar-brand" href="index.php"><img src="<?= PATH_IMAGENES . "/logo.png" ?>"></a>
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 							<ul class="navbar-nav ml-md-auto">

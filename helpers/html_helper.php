@@ -85,3 +85,26 @@ function getOptionsComboCategorias($incluir_cat_todas = false){
     return $opcionesCombo;    
 
 }
+
+function getOptionsComboTiposPublicacion($incluir_opcion_todos = false){
+  
+    include_once(PATH_HELPERS . "/database_helper.php");
+    include_once PATH_DAOS . '/tipos_pubsDAO.php';
+
+    $conexion = getConexion();
+
+    $tipos_pubs = buscarTiposPublicaciones();
+
+    $opcionesCombo = "";
+
+    if ($incluir_opcion_todos){
+        $opcionesCombo .= '<option value="-1">Todas</option>';
+    }
+    
+    foreach ( $tipos_pubs as $tipo_pub ){
+        $opcionesCombo .= '<option value="'. $tipo_pub["tp_id"] . '">' . $tipo_pub["tp_descripcion"] . '</option>';
+    }
+
+    return $opcionesCombo;    
+
+}
