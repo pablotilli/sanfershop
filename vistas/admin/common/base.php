@@ -87,7 +87,7 @@
 
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="index.php?m=categorias_pub">Categorias de publicaciones</a>
-					          <a class="dropdown-item" href="index.php?m=tipos_pub">Tipos de publicaciones</a>
+					          <a class="dropdown-item" href="index.php?m=tipos_pubs">Tipos de publicaciones</a>
 					        </div>
 
 					      </li>

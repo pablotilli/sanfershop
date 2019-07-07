@@ -13,7 +13,7 @@
                 $modulo = "categorias_pub";
                 break;
 
-            case "tipos_pub":
+            case "tipos_pubs":
                 $modulo = "tipos_pub";
                 break;
 

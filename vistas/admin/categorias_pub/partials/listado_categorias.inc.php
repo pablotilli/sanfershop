@@ -8,4 +8,4 @@
 
     $campos = [ "cat_id" => "ID", "cat_descripcion" => "Descripción" ];
 
-	echo getTablaHTML($categorias, $campos, "cat_id");
+	echo getTablaHTML($categorias, $campos, "cat_id", "categorias_pub");

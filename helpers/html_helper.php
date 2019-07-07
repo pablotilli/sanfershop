@@ -28,7 +28,7 @@ function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio){
 
 }
 
-function getTablaHTML( $registros, $campos, $primary_key ){
+function getTablaHTML( $registros, $campos, $primary_key, $nombre_modulo ){
 
   $tablaHTML = "<table class=\"table table-hover\">";
 
@@ -52,9 +52,9 @@ function getTablaHTML( $registros, $campos, $primary_key ){
     
     $tablaHTML .= "<td>";
 
-    $tablaHTML .= "<button onclick=\"mostrarEditor('modificar', " . $registro[$primary_key]  . ");\" class=\"btn btn-success btn-sm\" href='editar_cliente.php?id=" . $registro["cat_id"] . "'>Editar</button>";
+    $tablaHTML .= "<button onclick=\"mostrarEditor('modificar', " . $registro[$primary_key]  . ");\" class=\"btn btn-success btn-sm\">Editar</button>";
 
-    $tablaHTML .= "<a role=\"button\" class=\"btn btn-danger btn-sm ml-1  \" href='index.php?m=categorias_pub&a=del&id=" . $registro[$primary_key] . "'>Eliminar</a>";
+    $tablaHTML .= "<a role=\"button\" class=\"btn btn-danger btn-sm ml-1  \" href='index.php?m=" . $nombre_modulo . "&a=del&id=" . $registro[$primary_key] . "'>Eliminar</a>";
   }
 
   $tablaHTML .= "</table>";
