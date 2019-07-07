@@ -88,7 +88,7 @@
 						</div>
 
 						<div class="my-2">
-					      <button name="submit" type="submit" class="btn btn-primary">Buscar</button>
+					      <button onclick="enviarBusqueda();" name="submit" type="button" class="btn btn-primary">Buscar</button>
 						</div>
 						
 						<?php 
@@ -216,6 +216,22 @@
 
     <script src="<?= PATH_VENDOR ?>/jquery/jquery-3.4.1.min.js"></script>
     <script src="<?= PATH_VENDOR ?>/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+    	
+    	function enviarBusqueda(){
+    		
+			var urlBusqueda = 'index.php?buscar=' + $("#buscar").val() +
+							  '&categoria=' + $("#categoria").val() + 
+							  '&orden=' + $("#orden").val() ;
+
+			window.setTimeout( window.location = urlBusqueda, 100 );	
+
+	    }
+
+
+    </script>
 
   </body>
 </html>

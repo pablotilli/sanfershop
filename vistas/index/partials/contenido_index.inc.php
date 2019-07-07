@@ -21,7 +21,8 @@
 
 										      <select id="orden" name="orden" class="custom-select">
 										        <option value="0">menor precio</option>
-										        <option value="1">mayor precio</option>
+										        
+										        <option value="1" <?php if ( isset($_GET["orden"]) && $_GET["orden"] == 1){ ?> selected="selected" <?php } ?> >mayor precio</option>
 										      </select>
 
 

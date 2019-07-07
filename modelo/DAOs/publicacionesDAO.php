@@ -2,12 +2,13 @@
 
     include_once PATH_HELPERS . '/database_helper.php';
 
-	function buscarPublicaciones($busqueda, $id_categoria){
+	function buscarPublicaciones($busqueda, $id_categoria, $orden){
 
         $conexion = getConexion();
 
         $consulta = "SELECT pub_id, pub_titulo, SUBSTRING(pub_descripcion, 1, 100) AS pub_descripcion, pub_precio, pub_id_categoria, pub_id_usuario, pub_id_tipo_publicacion, pub_imagen " . 
-                  "FROM publicaciones";
+                  "FROM publicaciones ORDER BY " . $orden;
+
 
         if ( $busqueda != "" ){
 

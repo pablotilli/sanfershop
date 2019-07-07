@@ -16,7 +16,16 @@
     	$id_categoria = $_GET["categoria"];
     }
 
-    $pubs = buscarPublicaciones( $busqueda, $id_categoria );
+    $orden = "pub_precio ASC";
+
+    if ( isset($_GET["orden"]) ){
+    	if ( $_GET["orden"] == 1){
+    		$orden = "pub_precio DESC";
+    	};
+    }
+
+
+    $pubs = buscarPublicaciones( $busqueda, $id_categoria, $orden );
 
 	if ($pubs){
 		foreach ($pubs as $pub) {
