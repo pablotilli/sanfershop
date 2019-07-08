@@ -224,7 +224,9 @@
     		
 			var urlBusqueda = 'index.php?buscar=' + $("#buscar").val() +
 							  '&categoria=' + $("#categoria").val() + 
-							  '&orden=' + $("#orden").val() ;
+							  '&orden=' + $("#orden").val() +
+							  '&precio_desde=' + $("#precio_desde").val() + 
+							  '&precio_hasta=' + $("#precio_hasta").val();
 
 			window.setTimeout( window.location = urlBusqueda, 100 );	
 

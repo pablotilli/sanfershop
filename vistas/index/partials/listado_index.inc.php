@@ -24,8 +24,23 @@
     	};
     }
 
+    $precio_desde = null;
+    if ( isset($_GET["precio_desde"]) ){
+    	$precio_desde = $_GET["precio_desde"];
+    }
 
-    $pubs = buscarPublicaciones( $busqueda, $id_categoria, $orden );
+    $precio_hasta = null;
+    if ( isset($_GET["precio_hasta"]) ){
+    	$precio_hasta = $_GET["precio_hasta"];
+
+    	if (!$precio_desde){
+    		$precio_desde = 0;
+    	}
+
+    }
+
+
+    $pubs = buscarPublicaciones( $busqueda, $id_categoria, $orden, $precio_desde, $precio_hasta );
 
 	if ($pubs){
 		foreach ($pubs as $pub) {

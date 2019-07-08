@@ -2,23 +2,40 @@
 
     include_once PATH_HELPERS . '/database_helper.php';
 
-	function buscarPublicaciones($busqueda, $id_categoria, $orden){
+	function buscarPublicaciones($busqueda, $id_categoria, $orden, $precio_desde, $precio_hasta){
 
         $conexion = getConexion();
 
         $consulta = "SELECT pub_id, pub_titulo, SUBSTRING(pub_descripcion, 1, 100) AS pub_descripcion, pub_precio, pub_id_categoria, pub_id_usuario, pub_id_tipo_publicacion, pub_imagen " . 
-                  "FROM publicaciones ORDER BY " . $orden;
-
+                  "FROM publicaciones ";
 
         if ( $busqueda != "" ){
 
            $consulta .= " WHERE (pub_titulo LIKE '%" . $busqueda . "%' OR pub_descripcion LIKE '%" . $busqueda . "%')";
         }
 
+        if ( $precio_desde ){
+
+            if ( $busqueda == "" ){
+                $consulta .= " WHERE ";
+            }else{
+                $consulta .= " AND ";
+            }
+
+            $consulta .= " pub_precio >= " . $precio_desde;            
+        }
+
+        if ( $precio_hasta ){
+            $consulta .= " AND pub_precio <= " . $precio_hasta;            
+        }
+
+
+
+
         if ( $id_categoria >= 0 )
         {
             
-            if ( $busqueda != "" ) {
+            if ( $precio_desde ) {
                 $consulta .= " AND ";
             }
             else
@@ -30,7 +47,10 @@
 
         }
 
+        $consulta .= " ORDER BY " . $orden;
+
         $resultado = $conexion->query( $consulta );
+
 
         return $resultado;
 	}

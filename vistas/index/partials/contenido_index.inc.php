@@ -28,15 +28,15 @@
 
 												<div class="form-group my-2 ">
 													<label class="mx-2" for="">Desde</label>
-													<input name="precio_desde" id="precio_desde" class="form-control" type="text" /> 
+													<input name="precio_desde" id="precio_desde" class="form-control" type="text" value="<?php if( isset($_GET["precio_desde"]) ) { echo $_GET["precio_desde"]; } ?>" /> 
 												</div>
 
 												<div class="form-group my-2 mx-2">
 													<label class="mx-2" for="">Hasta</label>
-													<input name="precio_hasta" id="precio_hasta" class="form-control" type="text" /> 
+													<input name="precio_hasta" id="precio_hasta" class="form-control" type="text" value="<?php if( isset($_GET["precio_hasta"]) ) { echo $_GET["precio_hasta"]; } ?>" /> 
 												</div>
 
-												<button class="btn btn-primary  my-2 my-sm-0" type="submit">
+												<button onclick="enviarBusqueda();" class="btn btn-primary  my-2 my-sm-0" type="button">
 													Filtrar
 												</button>
 											</div>
