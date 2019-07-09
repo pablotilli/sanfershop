@@ -266,18 +266,27 @@
          inkscape:connector-curvature="0"
          id="path932"
          d="m 156.86012,56.607143 c 10.2962,-5.720702 18.65486,-12.271782 32.12797,-16.630954 2.14443,-1.06104 1.84175,8.482076 2.64584,13.229167 z"
-         style="fill:#003c8a;fill-opacity:1;stroke:#000080;stroke-width:1.26621977;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#003c8a;fill-opacity:1;stroke:#000080;stroke-width:1.26621977;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-filename="C:\xampp\htdocs\sanfershop\recursos\images\logo.png"
+         inkscape:export-xdpi="27.394903"
+         inkscape:export-ydpi="27.394903" />
       <path
          style="fill:#003c8a;fill-opacity:1;stroke:#000080;stroke-width:1.26621977;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 322.03572,57.363095 c -10.2962,-5.720702 -18.65486,-12.271782 -32.12797,-16.630954 -2.14443,-1.06104 -1.84175,8.482076 -2.64584,13.229167 z"
          id="path938"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cccc" />
+         sodipodi:nodetypes="cccc"
+         inkscape:export-filename="C:\xampp\htdocs\sanfershop\recursos\images\logo.png"
+         inkscape:export-xdpi="27.394903"
+         inkscape:export-ydpi="27.394903" />
       <path
          style="fill:#fff159;fill-opacity:1;stroke:#000080;stroke-width:3.59811022;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.73333333"
          d="M 217.61523 221.39453 L 173.63867 355.83398 C 351.8052 415.29555 502.70028 399.52816 642.37109 353.68359 L 600.53906 221.39453 C 489.87163 265.64628 370.81329 288.02055 217.61523 221.39453 z M 324.5293 267.08008 A 8.7108795 9.0951929 0 0 1 333.24023 276.17578 A 8.7108795 9.0951929 0 0 1 324.5293 285.27148 A 8.7108795 9.0951929 0 0 1 315.81836 276.17578 A 8.7108795 9.0951929 0 0 1 324.5293 267.08008 z M 488.45703 267.4375 A 8.7108795 9.095193 0 0 1 497.16797 276.5332 A 8.7108795 9.095193 0 0 1 488.45703 285.62891 A 8.7108795 9.095193 0 0 1 479.74609 276.5332 A 8.7108795 9.095193 0 0 1 488.45703 267.4375 z "
          transform="matrix(0.35238651,0,0,-0.35143902,95.672478,181.66111)"
-         id="path930" />
+         id="path930"
+         inkscape:export-filename="C:\xampp\htdocs\sanfershop\recursos\images\logo.png"
+         inkscape:export-xdpi="27.394903"
+         inkscape:export-ydpi="27.394903" />
     </g>
     <g
        aria-label="SANFER"

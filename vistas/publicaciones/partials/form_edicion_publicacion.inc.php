@@ -10,11 +10,37 @@
           
         <?php } ?>
 
-        <form method="POST" enctype="multipart/form-data" class="px-4">
+        <form action="index.php" method="POST" enctype="multipart/form-data" class="px-4">
           <div class="form-group">
 
             <input type="hidden" name="m" value="pubs">
-            <input type="hidden" name="a" value="add">
+
+          
+            <?php
+              $action = "new";
+
+              if ( isset($_REQUEST["a"]) && $_REQUEST["a"] == 'new' ){
+                $action = "add";
+              }
+            
+              if ( isset($_REQUEST["a"]) && $_REQUEST["a"] == 'edit' ) {
+                //Obtengo info de la publicacion
+
+                include_once( PATH_DAOS . "/publicacionesDAO.php");
+
+                $registros = buscarPublicacion($_REQUEST["id"]);
+
+                $publicacion = mysqli_fetch_assoc($registros);
+
+                $action = "update";
+
+                echo '<input type="hidden" name="id" value="' . $_REQUEST["id"] . '">';
+
+              }
+            
+            ?>
+
+            <input type="hidden" name="a" value="<?= $action?>">
 
             <label for="categoria">Categoría</label> 
             <div>
@@ -23,7 +49,7 @@
                 <?php
                   include_once( PATH_HELPERS . "/html_helper.php");
 
-                  echo getOptionsComboCategorias(false);
+                  echo getOptionsComboCategorias(false, $publicacion["pub_id_categoria"]);
                 ?>
 
               </select> 
@@ -32,14 +58,20 @@
           </div>
           <div class="form-group">
             <label for="titulo">Título</label> 
-            <input id="titulo" name="titulo" type="text" aria-describedby="tituloHelpBlock" required="required" class="form-control"> 
+
+            <input id="titulo" name="titulo" type="text" aria-describedby="tituloHelpBlock" required="required" class="form-control" value="<?=isset($publicacion["pub_titulo"])?$publicacion["pub_titulo"]:'';?>"> 
+
             <span id="tituloHelpBlock" class="form-text text-muted">Titulo de la publicación</span>
           </div>
+          
           <div class="form-group">
             <label for="descripcion">Descripción</label> 
-            <textarea id="descripcion" name="descripcion" cols="40" rows="4" aria-describedby="descripcionHelpBlock" required="required" class="form-control"></textarea> 
+            
+            <textarea id="descripcion" name="descripcion" cols="40" rows="4" aria-describedby="descripcionHelpBlock" required="required" class="form-control"><?= isset($publicacion["pub_descripcion"])? $publicacion["pub_descripcion"] : ''; ?></textarea> 
+
             <span id="descripcionHelpBlock" class="form-text text-muted">Describe detalladamente lo que estas publicando</span>
           </div>
+
           <div class="form-group">
             <label for="tipo_publicacion">Tipo</label> 
             <div>
@@ -48,21 +80,30 @@
                 <?php
                   include_once( PATH_HELPERS . "/html_helper.php");
 
-                  echo getOptionsComboTiposPublicacion(false);
+                  echo getOptionsComboTiposPublicacion(false, $publicacion["pub_id_tipo_publicacion"]);
                 ?>
 
               </select> 
+
+
               <span id="tipo_publicacionHelpBlock" class="form-text text-muted">Selecciona el tipo de publicación</span>
             </div>
           </div>
           <div class="form-group">
             <label for="imagen">Imagen</label> 
-            <input id="imagen" name="imagen" type="file" class="form-control-file" required="required" class="form-control">
+
+            <img class="card-img-top mb-2"  alt=""  src="<?= FILES . '/imagenes/publicaciones/' . $publicacion["pub_imagen"] ?>">
+
+            <input id="imagen" name="imagen" type="file" class="form-control-file" 
+
+            <?php if($action == 'add') { ?>
+              required="required" class="form-control">
+            <?php } ?>
           </div> 
 
           <div class="form-group">
             <label for="titulo">Precio</label> 
-            <input id="precio" name="precio" type="number" required="required" class="form-control"> 
+            <input id="precio" name="precio" type="number" required="required" class="form-control" value="<?=isset($publicacion["pub_precio"])?$publicacion["pub_precio"]:'';?>"> 
             
           </div>
           

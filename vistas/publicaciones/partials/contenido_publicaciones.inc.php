@@ -2,14 +2,11 @@
 
 include_once PATH_DAOS . '/publicacionesDAO.php';
 
-
-
 if ( isset($_REQUEST["a"]) ){
 
   switch ( $_REQUEST["a"] ){
 
     case "add":
-
 
       $publicacion["titulo"] = $_POST["titulo"];
 
@@ -23,7 +20,62 @@ if ( isset($_REQUEST["a"]) ){
 
       $publicacion["id_tipo_publicacion"] = $_POST["tipo_publicacion"];
 
+      subirImagenYGuardar($publicacion);
 
+      break;
+
+    case "new":
+
+      include "form_edicion_publicacion.inc.php";    
+
+      break;
+
+    case "list":
+
+      include "listado_publicaciones_usuario.inc.php"; 
+      
+      break;
+
+    case "edit":
+
+        include "form_edicion_publicacion.inc.php";
+
+        break;
+
+    case "del":
+        eliminarPublicacion( $_GET["id"] );
+
+        header( "Location: index.php?m=pubs&a=list&s=" . urlencode("Se ha eliminado la publicacion.") . "&t=success");
+
+        break;
+
+    case "update":
+    
+      $publicacion["id"] = $_POST["id"];
+
+      $publicacion["titulo"] = $_POST["titulo"];
+
+      $publicacion["descripcion"] = $_POST["descripcion"];
+
+      $publicacion["precio"] = $_POST["precio"];
+
+      $publicacion["id_categoria"] = $_POST["categoria"];
+
+      $publicacion["id_usuario"] = $_SESSION["id_usuario"];
+
+      $publicacion["id_tipo_publicacion"] = $_POST["tipo_publicacion"];
+
+      $publicacion["imagen"] = null;
+
+      //Guardo la imagen de la publicacion
+      subirImagenYGuardar($publicacion, true);
+
+
+  }
+
+}
+
+function subirImagenYGuardar($publicacion, $esModificacion=false){
 
       //Guardo la imagen de la publicacion
       if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
@@ -47,10 +99,21 @@ if ( isset($_REQUEST["a"]) ){
             {
               $publicacion["imagen"] = $newFileName;
 
-              agregarPublicacion( $publicacion );
+              
 
-              header( "Location: index.php?m=pubs&a=list&s=" . urlencode("Publicado correctamente.") . "&t=success");
+              if ( $esModificacion ){
+                  modificarPublicacion( $publicacion );
+                  
+                  $mensaje_ok = "Modificado correctamente.";
 
+              }
+              else{
+                  agregarPublicacion( $publicacion );
+                  
+                  $mensaje_ok = "Pubicado correctamente.";  
+              }
+              
+              header( "Location: index.php?m=pubs&a=list&s=" . urlencode($mensaje_ok) . "&t=success");
             }
             else
             {
@@ -66,20 +129,13 @@ if ( isset($_REQUEST["a"]) ){
               include "form_edicion_publicacion.inc.php"; 
           }
         }
+        else{
+              if ( $esModificacion ){
+                  modificarPublicacion( $publicacion );
 
-      break;
-
-    case "new":
-
-      include "form_edicion_publicacion.inc.php";    
-
-      break;
-
-    case "list":
-
-      include "listado_publicaciones_usuario.inc.php"; 
-
-  }
+                  header( "Location: index.php?m=pubs&a=list&s=" . urlencode("Modificado correctamente.") . "&t=success");
+              }
+        }
 
 }
 

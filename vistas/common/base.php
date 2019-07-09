@@ -12,7 +12,7 @@
     <meta name="author" content="Curso PHP SF 2019">
 
     <link href="<?= PATH_VENDOR ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <link href="<?= PATH_CSS ?>/estilo.css" rel="stylesheet">
 
   </head>

@@ -1,12 +1,14 @@
 <?php
 
-function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio){
+function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_pub, $pub_usuario = false){
 ?>	
 
   <div class="col-md-3 mb-4 text-center d-flex align-items-stretch"">
 
 	<div class="card">
+
 		<div class="card-title mb-5 p-4">
+          
 		  <?= $titulo ?>
 	  	</div>
 
@@ -17,8 +19,23 @@ function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio){
 		</div>
 	      
 	      <div class="card-footer">
-	    	  <?= $precio ?>
-		  </div>
+	    	  <?php echo $precio ;  
+
+              if ( $pub_usuario ) {
+              ?>
+              <div class="row py-2 mt-2 bg-light">
+            
+                <div class="col-12 ">
+                    <a class="btn px-4 btn-success" href="index.php?m=pubs&a=edit&id=<?=$id_pub?>" >Editar</a>
+                    <a class="btn px-4 btn-danger" href="index.php?m=pubs&a=del&id=<?=$id_pub?>" >Eliminar</a>
+                </div>
+
+              </div>              
+        
+         <?php } ?>
+
+        </div>
+
 
 	</div>
   </div>
@@ -63,7 +80,7 @@ function getTablaHTML( $registros, $campos, $primary_key, $nombre_modulo ){
 
 }
 
-function getOptionsComboCategorias($incluir_cat_todas = false){
+function getOptionsComboCategorias($incluir_cat_todas = false, $id_item_seleccionado = null){
   
     include_once(PATH_HELPERS . "/database_helper.php");
     include_once PATH_DAOS . '/categoriasDAO.php';
@@ -77,16 +94,24 @@ function getOptionsComboCategorias($incluir_cat_todas = false){
     if ($incluir_cat_todas){
         $opcionesCombo .= '<option value="-1">Todas</option>';
     }
+
     
     foreach ( $categorias as $categoria ){
-        $opcionesCombo .= '<option value="'. $categoria["cat_id"] . '">' . $categoria["cat_descripcion"] . '</option>';
+        $opcionesCombo .= '<option  value="'. $categoria["cat_id"] . '"';
+
+
+        if ( $id_item_seleccionado != null && ($id_item_seleccionado == $categoria["cat_id"]) ){
+            $opcionesCombo .= 'selected="selected" ';
+        }
+
+        $opcionesCombo .= '>' . $categoria["cat_descripcion"] . '</option>';
     }
 
     return $opcionesCombo;    
 
 }
 
-function getOptionsComboTiposPublicacion($incluir_opcion_todos = false){
+function getOptionsComboTiposPublicacion($incluir_opcion_todos = false, $id_item_seleccionado = null){
   
     include_once(PATH_HELPERS . "/database_helper.php");
     include_once PATH_DAOS . '/tipos_pubsDAO.php';
@@ -102,7 +127,13 @@ function getOptionsComboTiposPublicacion($incluir_opcion_todos = false){
     }
     
     foreach ( $tipos_pubs as $tipo_pub ){
-        $opcionesCombo .= '<option value="'. $tipo_pub["tp_id"] . '">' . $tipo_pub["tp_descripcion"] . '</option>';
+        $opcionesCombo .= '<option value="'. $tipo_pub["tp_id"] . '"';
+
+        if( $id_item_seleccionado == $tipo_pub["tp_id"]){
+            $opcionesCombo .=  ' selected="selected"';      
+        }
+
+        $opcionesCombo .= '>' . $tipo_pub["tp_descripcion"] . '</option>';
     }
 
     return $opcionesCombo;    

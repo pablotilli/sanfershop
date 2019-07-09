@@ -29,9 +29,6 @@
             $consulta .= " AND pub_precio <= " . $precio_hasta;            
         }
 
-
-
-
         if ( $id_categoria >= 0 )
         {
             
@@ -55,6 +52,18 @@
         return $resultado;
 	}
 
+    function buscarPublicacion( $id_publicacion ){
+        $conexion = getConexion();
+
+        $consulta = "SELECT * " . 
+                  "FROM publicaciones " . 
+                  "WHERE pub_id = " . $id_publicacion;
+
+        $resultado = $conexion->query( $consulta );
+
+        return $resultado;
+    }
+
     function buscarPublicacionesUsuario( $id_usuario ){
         $conexion = getConexion();
 
@@ -66,6 +75,17 @@
         $resultado = $conexion->query( $consulta );
 
         return $resultado;
+    }
+
+    function eliminarPublicacion( $id_publicacion ){
+
+        $conexion = getConexion();
+
+        $sql = "DELETE FROM publicaciones " .         
+               " WHERE pub_id = " . $id_publicacion;
+
+        $resultado = $conexion->query( $sql );
+
     }
 
     function agregarPublicacion( $publicacion ){
@@ -89,4 +109,29 @@
 
     }
 
+    function modificarPublicacion( $publicacion ){
+
+        $conexion = getConexion();
+
+        $sql = "UPDATE publicaciones SET " . 
+                    "pub_titulo= \"" . $publicacion["titulo"] . "\"" .
+                    ", pub_descripcion=\"" . $publicacion["descripcion"] . "\"". 
+                    ", pub_precio=" . $publicacion["precio"] .
+                    ", pub_id_categoria=" . $publicacion["id_categoria"] .
+                    ", pub_id_usuario=" . $publicacion["id_usuario"] .
+                    ", pub_id_tipo_publicacion=" . $publicacion["id_tipo_publicacion"];
+
+        if ( $publicacion["imagen"] ){
+            $sql .= ", pub_imagen=\"" . $publicacion["imagen"] . "\"";
+        }
+        
+        $sql .= " WHERE pub_id = " . $publicacion["id"];
+
+
+
+        $conexion->query( $sql );
+
+
+
+    }
 ?>
