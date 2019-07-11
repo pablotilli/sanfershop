@@ -10,8 +10,8 @@
     {
         switch( $_REQUEST["m"] ){
 
-            case "usr_pubs":
-                $modulo = "publicaciones_usuario";
+            case "show_pub":
+                $modulo = "publicacion";
                 break;
 
             case "pubs":

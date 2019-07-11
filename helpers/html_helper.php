@@ -5,7 +5,15 @@ function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_p
 
   <div class="col-md-3 mb-4 text-center d-flex align-items-stretch"">
 
+
+
 	<div class="card">
+
+        <?php
+            if ( !$pub_usuario ) {
+                echo '<a class="nav-link" href="index.php?m=show_pub&id=' . $id_pub .'">';
+            }
+        ?>
 
 		<div class="card-title mb-5 p-4">
           
@@ -14,10 +22,19 @@ function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_p
 
 	    <img class="card-img-top"  alt=""  src="<?= FILES . '/imagenes/publicaciones/' . $imagen ?>">
 	   
+        <?php
+            if ( !$pub_usuario ) {
+                echo '</a>';
+            }
+        ?>
+
 	    <div class="card-img-top card-body">
 
 		</div>
 	      
+
+
+
 	      <div class="card-footer">
 	    	  <?php echo $precio ;  
 
@@ -37,7 +54,11 @@ function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_p
         </div>
 
 
+
 	</div>
+
+
+
   </div>
 
 
