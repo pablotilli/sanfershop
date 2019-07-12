@@ -1,7 +1,6 @@
 <?php
     session_start();
 
-
     include('config/config.php');
 
     $modulo = "index";
@@ -24,6 +23,10 @@
 
             case "login":
                 $modulo = "login";
+                break;
+
+            case "fav":
+                $modulo = "favoritos";
                 break;
                     
             case "default":

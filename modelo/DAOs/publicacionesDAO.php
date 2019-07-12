@@ -77,6 +77,20 @@
         return $resultado;
     }
 
+    function buscarPublicacionesFavoritasUsuario( $id_usuario ){
+
+        $conexion = getConexion();
+
+        $consulta = "SELECT pub_id, pub_titulo, SUBSTRING(pub_descripcion, 1, 100) AS pub_descripcion, pub_precio, pub_id_categoria, pub_id_usuario, pub_id_tipo_publicacion, pub_imagen " . 
+                  "FROM publicaciones " . 
+                  "WHERE pub_id IN ( SELECT  fav_usr_id_publicacion  FROM favoritos_usuarios WHERE fav_usr_id_usuario = " . $id_usuario . ")";
+
+        $resultado = $conexion->query( $consulta );
+
+        return $resultado;
+
+    }
+
     function eliminarPublicacion( $id_publicacion ){
 
         $conexion = getConexion();

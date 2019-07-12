@@ -94,9 +94,9 @@
 						<?php 
 							if ( isset($_SESSION["usuario"]) ){ ?>
 								<div class="mt-4 mb-2">					    
-		   					    	<a href="#" class="mx-4" name="favoritos">Favoritos</a>
+		   					    	<a href="index.php?only_favs" class="mx-4">Favoritos</a>
 
-									<a href="#" class="mx-4" name="favoritos">Historial</a>
+									<a href="#" class="mx-4">Historial</a>
 
 									<a href="index.php?m=pubs&a=new" class="mx-4" name="publicar">Publicar</a>
 
@@ -180,7 +180,7 @@
 
 			<div class="row justify-content-center">
 				<div class="col-md-8">
-					<form role="form" method="POST">
+					<form action="index.php" role="form" method="POST">
 
 						<input type="hidden" name="m" value="login">
 

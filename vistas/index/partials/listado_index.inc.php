@@ -4,6 +4,8 @@
 
     include_once PATH_DAOS . '/publicacionesDAO.php';
 
+    include_once PATH_DAOS . '/favoritosDAO.php';
+
     $busqueda = "";
 
     if ( isset($_GET["buscar"]) ){
@@ -40,10 +42,26 @@
     }
 
 
-    $pubs = buscarPublicaciones( $busqueda, $id_categoria, $orden, $precio_desde, $precio_hasta );
+    if ( isset( $_GET["only_favs"]) )
+	{
+		$pubs = buscarPublicacionesFavoritasUsuario( $_SESSION["id_usuario"] );
+	}
+	else{
+		$pubs = buscarPublicaciones( $busqueda, $id_categoria, $orden, $precio_desde, $precio_hasta );	
+	}
+    
+
+    $favoritos=[];
+
+    if ( isset( $_SESSION["id_usuario"] ) ) {
+    	$favoritos = buscarFavoritosUsuario($_SESSION["id_usuario"]);
+    }
 
 	if ($pubs){
 		foreach ($pubs as $pub) {
-		crearHTMLCardPublicacion($pub['pub_titulo'], $pub['pub_descripcion'] . "...", $pub['pub_imagen'], "$" . $pub['pub_precio'], $pub['pub_id'], false);			   			
+
+			$es_favorito = in_array( $pub['pub_id'], $favoritos);
+
+			crearHTMLCardPublicacion($pub['pub_titulo'], $pub['pub_descripcion'] . "...", $pub['pub_imagen'], "$" . $pub['pub_precio'], $pub['pub_id'], false, $es_favorito);			   			
 		}
     }	

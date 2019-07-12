@@ -1,17 +1,34 @@
 <?php
 
-function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_pub, $pub_usuario = false){
+function crearHTMLCardPublicacion($titulo, $descripcion, $imagen, $precio, $id_pub, $pub_usuario = false, $es_favorito = false){
 ?>	
 
   <div class="col-md-3 mb-4 text-center d-flex align-items-stretch"">
-
 
 
 	<div class="card">
 
         <?php
             if ( !$pub_usuario ) {
+
+                if ( $es_favorito ){
+                    $link = '<a class="nav-link p-0 m-2 text-right" href="index.php?m=fav';
+
+                    if ( isset($_GET["only_favs"]) ){
+                       $link .= "&only_favs";
+                    }
+
+                    
+                    $link .= "&a=del&id=" . $id_pub .'">' . '<img src="' . PATH_IMAGENES . '/favorito.png' . '"></a>';
+
+                    echo $link;
+                }
+                else{
+                    echo '<a class="nav-link p-0 m-2 text-right" href="index.php?m=fav&a=add&id=' . $id_pub .'">' . '<img src="' . PATH_IMAGENES . '/no_favorito.png' . '"></a>';
+                }
+                
                 echo '<a class="nav-link" href="index.php?m=show_pub&id=' . $id_pub .'">';
+
             }
         ?>
 
@@ -103,10 +120,7 @@ function getTablaHTML( $registros, $campos, $primary_key, $nombre_modulo ){
 
 function getOptionsComboCategorias($incluir_cat_todas = false, $id_item_seleccionado = null){
   
-    include_once(PATH_HELPERS . "/database_helper.php");
     include_once PATH_DAOS . '/categoriasDAO.php';
-
-    $conexion = getConexion();
 
     $categorias = buscarCategorias();
 
